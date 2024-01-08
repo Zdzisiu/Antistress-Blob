@@ -1,0 +1,111 @@
+﻿OnFirstBoot
+{
+ 	lastTalk = "" 
+	passmin = 0 
+	passsec = 0 
+ 	username         = "USER" 
+	stroke           = 0	
+ 	teachusername    = 0	
+	mikireflag       = 0	
+ 	aitalkinterval = 400 
+	poke = 0
+	daypoke = 0
+ 	birthdayprint = "????" 
+	talktime = "5 minutes" 
+	deleteshitai = "OFF" 
+	nowshell = "master" 
+	if reference0 == 0 
+ 	{
+		"\1\s[10]\0\s[0]Blip\e"
+ 	}
+	else
+ 	{
+ 		{
+ 		"\1\s[10]\0\s[0]Blop\e"
+		}
+ 	}
+}
+
+GetTimeSlot
+{
+	if hour >= 5 && hour <= 8
+	{
+		"earlymorning"
+	}
+	elseif hour >= 9 && hour <= 11
+	{
+		"morning"
+	}
+	elseif hour >= 12 && hour <= 14
+	{
+		"lunch"
+	}
+	elseif hour >= 15 && hour <= 17
+	{
+		"afternoon"
+	}
+	elseif hour >= 18 && hour <= 20
+	{
+		"evening"
+	}
+	elseif hour >= 21 && hour <= 24
+	{
+		"latenight"
+	}
+	else
+	{
+		"midnight"
+	}
+}
+
+GetDaySlot
+{
+	"%(month)month %(day)day"
+}
+
+OnBoot
+{
+	lastTalk = "" 
+	passmin = 0
+	passsec = 0
+	daypoke = 0
+ 	"\0\s[0]\1\s[10]" 
+	--
+	dayslot = GetDaySlot
+	timeslot = GetTimeSlot 
+	--
+	"%(normalboottalk)" 
+}
+
+normalboottalk
+{
+	"Blip"
+	"Blop"
+	"Blup"
+}
+
+OnClose
+{
+	timeslot = GetTimeSlot 
+	--
+	"Blip"
+	"Blop"
+	"Blup"
+	--
+	"\w8\w8\-\e" 
+}
+
+OnWindowStateRestore
+{
+	"\0\s[0]...\e"
+}
+
+OnGhostChanging
+{
+	"\0\s[0]What a betrayaly, and for what? %(reference0) whose not even a blob?\w8\w8\e"
+}
+
+OnGhostChanged
+{
+	"\0\s[0]\1\s[10]You made a good choice, there is no need for non-blobs here" 
+}

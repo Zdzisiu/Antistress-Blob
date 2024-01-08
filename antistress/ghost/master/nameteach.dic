@@ -1,0 +1,45 @@
+﻿OnTeachName	
+{
+	if reference0 == "TEACHNAME" 
+	{
+		"\0\s[0]Choose new name for Blob\![open,inputbox,OnNameTeach,-1]\e"
+	}
+	else
+	{
+
+	}
+}
+
+OnNameTeach
+{
+	_temp = TOLOWER(reference0)
+	_colors = ("pink","red","blue","purple","violet","yellow","orange","green","brown")
+	--
+	if reference0 == "" || reference0 == " " || reference0 == "   "{
+		username = "NULL" 
+		"No name blob\e"
+	}elseif _temp == "squish"{
+		username = reference0
+		"True name\e"
+	}elseif _temp == "squash"{
+		username = reference0
+		"Middle name\e"
+	}elseif _temp == "squish squash blob"{
+		username = reference0
+		"Full name\e"
+	}elseif _temp == "bitch" || _temp == "asshole" || "fucker" _in_ _temp{
+		username = reference0
+		"Rude\e"
+	}elseif _temp == "blob"{
+		username = reference0
+		"Surname\e"
+	}elseif _temp == "blup" || _temp == "blip" || _temp == "blop"{
+		username = reference0
+		"Nickname\e"
+	}elseif _temp _in_ "%(_colors)"{
+		username = reference0
+		"Color\e"
+	}elseif _temp == "zdzisiu" || _temp == "teacup" || _temp == "internet teacup" || _temp == "zdzis"{
+		"Don't squash the developer please\![open,inputbox,OnNameTeach,-1]\e"
+	}
+}
